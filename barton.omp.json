@@ -1,0 +1,97 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "blocks": [
+    {
+      "alignment": "left",
+      "segments": [
+        {
+	  "foreground": "#ff70a6",
+          "leading_diamond": "<#ff70a6> \ue200 </>",
+          "properties": {
+            "display_host": true
+	  },
+	  "style": "diamond",
+          "template": "{{ .UserName }} ",
+          "type": "session"
+	},
+        {
+          "background": "#8be9fd",
+          "foreground": "#f8f8f2",
+          "powerline_symbol": "\ue0b0",
+          "style": "powerline",
+          "template": " \ue718 {{ if .PackageManagerIcon }}{{ .PackageManagerIcon }} {{ end }}{{ .Full }} ",
+          "type": "node"
+        },
+        {
+	  "type": "time",
+          "foreground": "#00c7fc",
+          "properties": {
+            "time_format": "15:04:05"
+          },
+          "style": "diamond",
+          "template": "{{ .CurrentDate | date .Format }} "
+        },
+	{
+	  "type": "git",
+	  "foreground": "#ff70a6",
+	  "properties": {
+	    "branch_icon": "",
+	    "fetch_stash_count": true,
+	    "fetch_status": false,
+	    "fetch_upstream_icon": true
+	  },
+	  "style": "powerline",
+	  "template": "\ue725 {{ .UpstreamIcon }}{{ .HEAD }}{{ if gt .StashCount 0 }} {{ .StashCount }}{{ end }}"
+	},
+	{
+	  "type":"docker",
+	  "style":"powerline",
+	  "powerline_symbol":"\ue0b0",
+	  "foreground": "#ff79c6",
+	  "background" : "#f8f8f2",
+	  "template":" {{ .Context }} "
+	}
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "right",
+      "segments": [
+        {
+          "background": "#f1fa8c",
+          "foreground": "#282a36",
+          "invert_powerline": true,
+          "leading_diamond": "\ue0b2",
+          "style": "diamond",
+          "template": " \ue7ad {{.Profile}}{{if .Region}}@{{.Region}}{{end}}",
+          "trailing_diamond": "\ue0b4",
+          "type": "aws"
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "foreground": "#ff70a6",
+	  "leading_diamond": "<#00c7fc> \ue285",
+          "properties": {
+            "folder_icon": "\uf07b",
+            "folder_separator_icon": " \uebcb ",
+            "home_icon": "home",
+            "style": "agnoster_full"
+          },
+          "style": "diamond",
+          "template": " \ue5ff {{ .Location }}",
+          "trailing_diamond": "<#ff70a6>:</>",
+          "type": "path"
+        }
+      ],
+      "type": "prompt"
+    }
+  ],
+  "final_space": true,
+  "version": 2
+}
