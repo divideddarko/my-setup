@@ -49,3 +49,21 @@ $ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
 if (Test-Path($ChocolateyProfile)) {
   Import-Module "$ChocolateyProfile"
 }
+
+function New-AOCFolder {
+  Write-Host "Creating a new folder and subfolder for Advent of Code $(Get-Date -f yyyy)" -ForegroundColor Blue
+
+  $folderDetails = New-Item -Path "$($env:USERPROFILE)\Documents\Programming\AdventOfCode\" -Name "$(Get-Date -f yyyy)" -Type Directory
+
+  if ($folderDetails.Exists) {
+    1 .. 25 | ForEach-Object {
+      $dayFolders = New-Item -Path "$($folderDetails.FullName)\" -Name "Day$($_)" -Type Directory
+      if ($dayFolders.Exists) {
+	New-Item -Type File -Path "$($dayFolders.FullName)\testinput.txt"
+	New-Item -Type File -Path "$($dayFolders.FullName)\input.txt"
+	New-Item -Type File -Path "$($dayFolders.FullName)\solution.ps1"
+      }
+    }
+  }
+  Write-Host "AOC folders have been created" -ForegroundColor Green
+}
